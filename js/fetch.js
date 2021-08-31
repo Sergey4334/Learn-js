@@ -9,19 +9,21 @@ promise.then(r => {console.log(r); return r}) //* примит то, что бы
 .catch(err => console.log(err)); //* Отлавливать ошибки в методе catch
 
 //* Fetch - новый стандарт для Ajax запросов который используют Promise
+
 const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
 //* Вызвав эту функцию получаем на выходе Promise/
-//* Fetch по умолчанию делает Get Запрос
+//* Fetch по умолчанию делает Get Запрос если другой запром, то вторым параметром передать доп агрументы в виде Обьекта
 
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then(response => {
-    return response.json()
+    return response.json() //* Получаем данные от сервера вызвам метод json() если данные в этом формате
   })
-  .then(posts => console.log(posts))
+  .then(posts => console.log(posts)) //* Получаем наши посты
   .catch(err => console.log(err));
 
 //* Использование fetch через функции
+
 function getPost(id) {
   return new Promise((resolve, reject) => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -53,14 +55,11 @@ getPost3('user-1')//* Если передадим число либо что т�
   .catch(err => console.log(err));
 
 //* Async Await - новый формат написания асинхронного кода! Также позволяет писать код в более синхронном стиле
-function getPost4(id) {
-  return Promise.resolve().then(() => {
-    const [userType, userId] = id.split('-');
-    return fetch(`https://jsonplaceholder.typicode.com/posts/${userId}`)
-      .then(response => response.json())
-  }); 
-}
+
 //* async - ставиться перед определением функции или метода -- всегда будет возвращать Promise
+
+//* await - типа замораживает наш код до выполнения асинхронных действий
+
 async function getP(id) {
   try {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
