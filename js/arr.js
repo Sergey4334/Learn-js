@@ -46,7 +46,90 @@ const [, d, , e] = arrNumber;//* 3 , 10
 //* Двумерный масив
 const arrNum = [[12, 15], [14, 45]];
 const [[onex, oney], [twox, twoy]] = arrNum;
-console.log(onex, oney, twox, twoy); //* 12 15 14 45
+//console.log(onex, oney, twox, twoy); //* 12 15 14 45
+
+//* Objects
+const x = 10;
+const y = 15;
+// Записать у обьект свойства x, y так
+const p = {x, y};
+
+//*Копировать опции из одного обьекта в другой
+const defOptions = {
+  host: 'localhost',
+  user: 'Admin',
+  dbName: 'blog'
+};
+
+const userOptions = {
+  user: 'Srhii',
+  password: '1212343'
+};
+
+const result = Object.assign({}, defOptions, userOptions); //Поверхносное копирование обьектов - shallow-copy
+//console.log(result);
+
+//* Оператор Оbject Spread
+
+const optionAdmin = {
+  host: 'localhost',
+  user: 'Admin',
+  dbName: 'admin-root'
+}
+const optionUser = {
+  user: 'User',
+  password: '43434545'
+}
+const result12 = Object.assign({}, optionAdmin, optionUser);
+
+// На Spread operator
+const resUser = {...optionAdmin, ...optionUser};
+console.log(resUser);
+
+//* Class in ES6
+
+//Функция Конструктор для создания Класса
+
+function Animal(name, voice) {
+  this.name = name;
+  this.voice = voice;
+}
+
+Animal.prototype.say = function() {
+  //console.log(this.name, 'does', this.voice);
+}
+
+const dog = new Animal('dog', 'woof');
+dog.say();
+
+//* Создание обьектов через Класс в Es6
+
+class User {
+  constructor(name, voise) {
+    this.name = name;
+    this.voise = voise;
+  }
+  say() {
+    console.log(this.name, 'does', this.voise);
+  }
+}
+//personUser -> Admin.prototype -> User.prototype -> Object.prototype -> null
+class Admin extends User {
+  constructor(name, voise, cleanCode) {
+    super(name, voise);
+    super.say();
+    this.cleanCode = cleanCode;
+  }
+}
+
+const personUser = new Admin('Serhii', 'Hey Whats up!', true);
+personUser.say();
+
+//* Class Properties
+class Counter {
+  
+}
+
 
 
 
